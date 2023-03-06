@@ -1,0 +1,51 @@
+<aside class="main-menu-box">
+<div class="header">
+<div class="container">
+<div class="logo"><img src="../../../assets/images/logo.png" class="w-100" /></div>
+<div class="subtitle">Versione: {{appVersion}}</div>
+</div>
+</div>
+<div class="container">
+
+<ul class="nav flex-column flex-nowrap main-menu overflow-hidden">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/dashboard']" [ngClass]="url1==='/dashboard' ? 'active ' : ''"> <span><fa-icon icon="dashboard"></fa-icon> Dashboard</span></a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" [ngClass]="url1 ==='/mood' ? 'active' : ''" [routerLink]="['/mood']"> <span><fa-icon icon="smile-beam"></fa-icon> Umore</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="submenu nav-link" [routerLink]="['/pills']" [ngClass]="url1==='/pills' ||  url1==='/pills' ? 'active ' : ''"> <span><fa-icon icon="pills"></fa-icon> Farmaci </span></a>
+                </li>
+                  <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/calendar']" [ngClass]="url1 ==='/calendar' ? 'active' : ''"><span><fa-icon icon="calendar"></fa-icon> Calendario</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/medico']" [ngClass]="url1 ==='/medico' ? 'active' : ''"><span><fa-icon icon="user-doctor"></fa-icon> Medico</span></a>
+                </li>
+                  <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/diario']" [ngClass]="url1 ==='/diario' ? 'active' : ''"><span><fa-icon icon="clipboard"></fa-icon> Diario</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" [routerLink]="['/files']" [ngClass]="url1 ==='/files' ? 'active' : ''"><span><fa-icon icon="file"></fa-icon> File Condivisi</span></a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/report']" [ngClass]="url1==='/report' ? 'active' : ''"><span><fa-icon icon="list-numeric"></fa-icon> Report</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/profile']" [ngClass]="url1==='/profile' ? 'active' : ''"><span><fa-icon icon="user-astronaut"></fa-icon> Profilo</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/impostazioni']" [ngClass]="url1==='/impostazioni' ? 'active' : ''"><span><fa-icon icon="gears"></fa-icon> Impostazioni</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/aboutus']" [ngClass]="url1==='/aboutus' ? 'active' : ''"><span><fa-icon icon="info-circle"></fa-icon> Questa App</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/updates']" [ngClass]="url1==='/updates' ? 'active' : ''"><span><fa-icon icon="adjust"></fa-icon> Aggiornamenti APP</span></a>
+                </li>
+
+            </ul>
+</div>
+<div class="singout-btn"><a (click)="loginPage()">Log Out <fa-icon icon="arrow-right"></fa-icon></a></div>
+</aside>

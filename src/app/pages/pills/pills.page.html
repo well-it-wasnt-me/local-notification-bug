@@ -1,0 +1,99 @@
+<app-sidebar></app-sidebar>
+<ion-content class="page-background">
+  <div class="container">
+    <div class="header">
+      <div class="row">
+        <div class="col-8"><a [routerLink]="['/dashboard']" class="back-btn"><fa-icon icon="angle-left"></fa-icon></a><span class="title">Elenco Farmaci</span>
+        </div>
+        <div class="col-4 text-right"><br><div class="edit-profile"><a id="open-modal-pill"><fa-icon size="2x" icon="plus-square"></fa-icon></a></div></div>
+      </div>
+    </div>
+  <div class="main-subtitle">I Miei Farmaci</div>
+  <div class="list" *ngFor="let pill of temp;">
+    <div *ngFor="let data of pill; let i = index">
+    <div class="width-10 float-left"><div class="icon"><img src="../../../assets/images/pill-capsule.png" class="w-100"/></div></div>
+    <div class="width-80 float-left"><div class="title">{{data.denom}}</div>
+      <div class="subtitle"><span>DOSAGGIO</span> da definire</div></div>
+    <div class="width-10 float-left text-right">
+      <a class="read-more-btn"><fa-icon icon="search-plus"></fa-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+    </div>
+    </div>
+  </div>
+</div>
+
+  <ion-modal trigger="open-modal-pill" (willDismiss)="onWillDismiss($event)">
+    <ng-template class="page-background">
+      <ion-header class="page-background">
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Chiudi</ion-button>
+          </ion-buttons>
+          <ion-title>Nuova Pillola</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding page-background modern">
+        <br>
+        <div class="ng-autocomplete">
+          <ng-autocomplete
+            [(ngModel)]="selectedPill"
+            [data]="data"
+            [searchKeyword]="keyword"
+            placeholder="Scrivi nome farmaco"
+            (selected)='selectEvent($event)'
+            (inputChanged)='onChangeSearch($event)'
+            (inputFocused)='onFocused($event)'
+            [notFoundText]="notFound"
+            [minQueryLength]="minQuery"
+            [itemTemplate]="itemTemplate"
+            [notFoundTemplate]="notFoundTemplate">
+          </ng-autocomplete>
+
+          <ng-template #itemTemplate let-item>
+            <a [innerHTML]="item.denom"></a>
+          </ng-template>
+
+          <ng-template #notFoundTemplate let-notFound>
+            <div [innerHTML]="notFound"></div>
+          </ng-template>
+        </div>
+        <ion-button size="full" (click)="addPill()">CONFERMA</ion-button>
+        <div class="box">
+          <div *ngIf="hideFrequenza">
+            <div class="label">Frequenza</div>
+            <select (change)="selectedFreq()" [(ngModel)]="selectedFreque" class="form-control">
+              <option value="once">Una Volta al Giorno</option>
+              <option value="twice">Due Volte al Giorno</option>
+              <option value="none">Al Bisogno</option>
+            </select>
+          </div>
+          <br>
+          <div *ngIf="hideOraSingola">
+            <div class="label">Ora 1 dose</div>
+            <input type="time" class="form-control" [(ngModel)]="oraPrimaDoseSingola">
+          </div>
+          <div *ngIf="hideOraDoppia">
+            <div class="label">Ora 1 dose</div>
+            <input type="time" class="form-control" [(ngModel)]="oraPrimaDoseDoppia">
+            <div class="label">Quantità</div>
+            <input type="number" class="form-control" [(ngModel)]="qtPrimaDoseDoppia">
+            <br>
+            <div class="label">Ora 2 dose</div>
+            <input type="time" class="form-control" [(ngModel)]="oraSecondaDoseDoppia">
+            <div class="label">Quantità</div>
+            <input type="number" class="form-control" [(ngModel)]="qtSecondaDoseDoppia">
+          </div>
+          <br>
+          <br>
+          <div *ngIf="hideScorta">
+            <div class="label">Scorta (quantita di pillole disponibili al momento)</div>
+            <input type="number" class="form-control" ngModel="scorte">
+          </div>
+
+          <ion-button size="full" (click)="salvaPromemoria()">SALVA PROMEMORIA</ion-button>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>
+<app-footerbtn></app-footerbtn>
